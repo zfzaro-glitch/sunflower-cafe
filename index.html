@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sunflower Café | ستفلاور كافيه</title>
+    <title>Sunflower Café</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-green: #2d5a27;
-            --bg-body: #f4f6f9;
+            --primary-color: #ffcc00; /* Sunflower Yellow */
+            --primary-dark: #b8860b;
+            --bg-body: #fdfdfd;
             --card-bg: #ffffff;
             --text-main: #1c1e21;
             --nav-bg: rgba(255, 255, 255, 0.98);
@@ -26,14 +27,13 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             margin: 0;
-            padding-top: 135px; /* Adjusted for mobile view */
+            padding-top: 140px;
             transition: 0.3s;
         }
 
-        /* --- Compact Mobile Navigation --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 2000;
-            background: var(--nav-bg); border-bottom: 2px solid var(--primary-green);
+            background: var(--nav-bg); border-bottom: 3px solid var(--primary-color);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
@@ -42,60 +42,45 @@
             padding: 8px 12px; max-width: 1200px; margin: 0 auto;
         }
 
-        .logo-box { display: flex; align-items: center; gap: 6px; text-decoration: none; }
-        .logo-circle { width: 35px; height: 35px; border-radius: 50%; border: 1.5px solid var(--primary-green); object-fit: cover; }
-        .brand-name { font-weight: 900; color: var(--primary-green); font-size: 1rem; }
+        .logo-box { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        .logo-circle { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-color); display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; }
+        .brand-name { font-weight: 900; color: var(--primary-dark); font-size: 1.2rem; text-transform: uppercase; }
 
-        /* Smooth Scroll Categories */
         .category-nav {
-            display: flex; overflow-x: auto; gap: 8px; padding: 8px 12px;
+            display: flex; overflow-x: auto; gap: 8px; padding: 10px 12px;
             background: rgba(0,0,0,0.02); scrollbar-width: none;
-            -webkit-overflow-scrolling: touch; border-top: 1px solid rgba(0,0,0,0.05);
+            -webkit-overflow-scrolling: touch;
         }
         .category-nav::-webkit-scrollbar { display: none; }
 
         .cat-link {
             color: var(--text-main); text-decoration: none; white-space: nowrap;
-            padding: 6px 12px; border-radius: 15px; font-size: 12px; font-weight: 600;
-            border: 1px solid rgba(45, 90, 39, 0.15); background: var(--card-bg);
+            padding: 6px 14px; border-radius: 15px; font-size: 12px; font-weight: 700;
+            border: 1px solid rgba(0,0,0,0.1); background: var(--card-bg);
         }
 
-        /* Fixed Search below Nav */
-        .search-wrap { padding: 8px 12px; background: var(--bg-body); position: sticky; top: 90px; z-index: 1000; }
+        .search-wrap { padding: 10px 12px; background: var(--bg-body); position: sticky; top: 95px; z-index: 1000; }
         .search-box {
             width: 100%; padding: 10px 15px; border-radius: 20px;
-            border: 1.5px solid var(--primary-green); background: var(--card-bg);
-            color: var(--text-main); outline: none; font-size: 14px; box-sizing: border-box;
+            border: 2px solid var(--primary-color); background: var(--card-bg);
+            color: var(--text-main); outline: none; box-sizing: border-box;
         }
 
-        /* --- Grid for Mobile --- */
-        .menu-section { max-width: 1200px; margin: 0 auto 30px; padding: 0 10px; scroll-margin-top: 145px; }
-        .section-title { 
-            color: var(--primary-green); font-size: 18px; margin-bottom: 12px; 
-            border-right: 4px solid var(--primary-green); padding-right: 10px;
-        }
+        .menu-section { max-width: 1200px; margin: 0 auto 30px; padding: 0 10px; scroll-margin-top: 150px; }
+        .section-title { color: var(--primary-dark); font-size: 1.2rem; margin-bottom: 12px; border-right: 4px solid var(--primary-color); padding-right: 10px; }
 
         .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        @media (min-width: 768px) { .menu-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); } }
 
-        .item-card {
-            background: var(--card-bg); border-radius: 12px; overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .item-img { width: 100%; height: 90px; object-fit: cover; background: #eee; }
-        .item-info { padding: 8px; display: flex; flex-direction: column; gap: 4px; }
-        .item-name { font-size: 12.5px; font-weight: 700; min-height: 34px; line-height: 1.2; }
-        .price { color: var(--primary-green); font-weight: 800; font-size: 14px; margin-top: 4px; }
+        .item-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); }
+        .item-img { width: 100%; height: 100px; object-fit: cover; background: #eee; }
+        .item-info { padding: 10px; display: flex; flex-direction: column; justify-content: space-between; min-height: 70px; }
+        .item-name { font-size: 13px; font-weight: 700; line-height: 1.2; }
+        .price { color: var(--primary-dark); font-weight: 900; font-size: 14px; margin-top: 5px; }
 
-        .btn-ui { background: var(--card-bg); border: 1.5px solid var(--primary-green); color: var(--text-main); padding: 4px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; }
+        .btn-ui { background: var(--card-bg); border: 1.5px solid var(--primary-color); color: var(--text-main); padding: 4px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; }
         
-        .wa-float {
-            position: fixed; bottom: 20px; right: 20px;
-            background: #25D366; color: white; width: 50px; height: 50px;
-            border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            font-size: 28px; box-shadow: 0 3px 10px rgba(0,0,0,0.2); z-index: 3000;
-        }
-
-        footer { padding: 20px; text-align: center; font-size: 11px; opacity: 0.6; }
+        .wa-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; z-index: 3000; text-decoration: none; }
     </style>
 </head>
 <body data-theme="light">
@@ -103,8 +88,8 @@
 <header>
     <div class="nav-top">
         <a href="#" class="logo-box">
-            <img src="logo.jpg" alt="Logo" class="logo-circle">
-            <span class="brand-name">Sunflower Café</span>
+<img src="logo.jpg" alt="Logo" class="logo-circle">
+            <span class="brand-name">Sunflower</span>
         </a>
         <div style="display:flex; gap:6px;">
             <button class="btn-ui" onclick="toggleLang()" id="langBtn">کوردی</button>
@@ -115,59 +100,74 @@
 </header>
 
 <div class="search-wrap">
-    <input type="text" id="search" class="search-box" placeholder="ابحث..." oninput="searchMenu()">
+    <input type="text" id="search" class="search-box" placeholder="ابحث عن طلبك..." oninput="searchMenu()">
 </div>
 
 <div id="menu-content"></div>
 
 <a href="https://wa.me/964750XXXXXXX" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<footer>© 2026 Sunflower Café | ستفلاور كافيه- Kirkuk</footer>
-
 <script>
 const menuData = [
     { id: "coffee", ar: "القهوة", ku: "قاوە", items: [
         {a: "قهوة تركية", k: "قاوەی تورکی", p: "2.000"}, {a: "قهوة قزوان", k: "قاوەی قەزوان", p: "2.000"},
-        {a: "قهوة فستق", k: "قاوەی فستق", p: "2.500"}, {a: "قهوة (Glasar)", k: "قاوەی گلاسر", p: "3.000"},
+        {a: "قهوة فستق", k: "قاوەی فستق", p: "2.000"}, {a: "قهوة (Glasar)", k: "قاوەی گلاسر", p: "2.500"},
         {a: "اسبريسو سنكل", k: "ئەسپرێسۆ سینگڵ", p: "2.000"}, {a: "اسبريسو دبل", k: "ئەسپرێسۆ دەبڵ", p: "2.500"},
-        {a: "امریکانو", k: "ئەمریکانۆ", p: "3.000"}, {a: "فلات وايت", k: "فلات وایت", p: "3.000"},
+        {a: "امريكانو", k: "ئەمریکانۆ", p: "3.000"}, {a: "فلات وايت", k: "فلات وایت", p: "3.000"},
         {a: "كابتشينو", k: "کاپوچینۆ", p: "3.000"}
     ]},
     { id: "hot", ar: "مشروبات حارة", ku: "خواردنەوە گەرمەکان", items: [
-        {a: "لوتس حار", k: "لوتس حار", p: "3.000"}, {a: "شاي كرك", k: "چای کەرەک", p: "3.000"},
+        {a: "لوتس حار", k: "لۆتس حار", p: "3.000"}, {a: "شاي كرك", k: "چای کەرەک", p: "3.000"},
         {a: "هوت دافا", k: "هۆت دافا", p: "3.500"}, {a: "هوت جوكليت", k: "هۆت جۆکلێت", p: "3.000"},
         {a: "هوت دارك جوكليت", k: "هۆت دارک جۆکلێت", p: "3.500"}, {a: "سحلب", k: "سەحلەب", p: "3.000"}
-    ]},
-    { id: "cold-coffee", ar: "قهوة باردة", ku: "قاوەی سارد", items: [
-        {a: "لاتيه كلاسيك", k: "لاتێ کلاسیک", p: "3.000"}, {a: "سبانش لاتيه", k: "سپانیش لاتێ", p: "3.500"},
-        {a: "لاتيه كراميل", k: "لاتێ کەرامێل", p: "3.500"}, {a: "لاتيه بندق", k: "لاتێ بندق", p: "3.500"},
-        {a: "لاتيه فانيلا", k: "لاتێ ڤانیلا", p: "3.500"}, {a: "ايس امريكانو", k: "ئایس ئەمریکانۆ", p: "3.000"},
-        {a: "لاتيه جوز الهند", k: "لاتێ گوێزی هندی", p: "3.500"}, {a: "ايس كولد برو", k: "ئایس کۆڵد برو", p: "3.000"},
-        {a: "لاتيه (Glasar)", k: "لاتێ گلاسر", p: "4.000"}, {a: "موكا (كراميل,دارك,وايت)", k: "مۆکا", p: "3.500"},
-        {a: "لاتيه بستاشيو", k: "لاتێ بستاشیو", p: "4.000"}
     ]},
     { id: "ice-tea", ar: "ايس تي", ku: "ئایس تی", items: [
         {a: "ايس تي ليمون", k: "ئایس تی لیمۆن", p: "3.000"}, {a: "ايس تي مانغو", k: "ئایس تی مانگۆ", p: "3.000"},
         {a: "ايس تي خوخ", k: "ئایس تی خوخ", p: "3.000"}, {a: "ايس بيري", k: "ئایس بێری", p: "3.000"}
     ]},
+    { id: "cold-coffee", ar: "قهوة باردة", ku: "قاوەی سارد", items: [
+        {a: "لاتيه كلاسيك", k: "لاتێ کلاسیک", p: "3.000"}, {a: "سبانش لاتيه", k: "سپانیش لاتێ", p: "3.500"},
+        {a: "لاتيه كراميل", k: "لاتێ کەرامێل", p: "3.500"}, {a: "لاتيه بندق", k: "لاتێ بندق", p: "3.500"},
+        {a: "لاتيه فانيلا", k: "لاتێ ڤانیلا", p: "3.500"}, {a: "ايس امريكانو", k: "ئایس ئەمریکانۆ", p: "3.000"},
+        {a: "لاتيه جوز الهند", k: "لاتێ گوێزی هندی", p: "3.500"}, {a: "لاتيه ايرش", k: "لاتێ ئایریش", p: "3.500"},
+        {a: "ايس كولد برو", k: "ئایس کۆڵد برو", p: "3.000"}, {a: "ايس مارتيني", k: "ئایس مارتینی", p: "3.000"},
+        {a: "ايس امريكانو بالبرتقال", k: "ئایس ئەمریکانۆ بە پرتەقاڵ", p: "3.500"},
+        {a: "ايس امريكانو بالصودا", k: "ئایس ئەمریکانۆ بە سۆدا", p: "3.500"},
+        {a: "موكا (كراميل,دارك, وايت)", k: "مۆکا", p: "3.500"},
+        {a: "لاتيه كرز / فراولة", k: "لاتێ گێلاس یان فراولە", p: "3.500"},
+        {a: "لاتيه بستاشيو", k: "لاتێ بستاشیو", p: "4.000"}
+    ]},
+    { id: "frappe", ar: "فرابي", ku: "فرابی", items: [
+        {a: "فرابي جوكليت", k: "فرابی جۆکلێت", p: "5.000"}, {a: "فرابي كراميل", k: "فرابی کەرامێل", p: "5.000"},
+        {a: "فرابي دارك جوكليت", k: "فرابی دارک", p: "5.000"}, {a: "فرابي دارك نعناع", k: "فرابی دارک نەعناع", p: "5.000"}
+    ]},
+    { id: "smoothie", ar: "سمودي", ku: "سمووزی", items: [
+        {a: "فراولة", k: "فراولە", p: "3.500"}, {a: "مانكو", k: "مانگۆ", p: "3.500"},
+        {a: "راز بيري", k: "رازبێری", p: "3.500"}, {a: "بلو بيري", k: "بلۆ بێری", p: "3.500"},
+        {a: "اناناس", k: "ئەناناس", p: "3.500"}, {a: "موز فراولة", k: "مۆز فراولە", p: "3.500"},
+        {a: "خوخ", k: "خوخ", p: "3.500"}
+    ]},
     { id: "mojito", ar: "موهيتو", ku: "مۆهیتۆ", items: [
         {a: "ليمون نعناع", k: "لیمۆن نەعناع", p: "3.000"}, {a: "فراولة", k: "فراولە", p: "3.000"},
         {a: "رمان", k: "رمان", p: "3.000"}, {a: "باشن فروت", k: "باشن فروت", p: "3.000"},
         {a: "راز بيري", k: "رازبێری", p: "3.000"}, {a: "بلو بيري", k: "بلۆ بێری", p: "3.000"},
-        {a: "مانكو", k: "مانگۆ", p: "3.000"}
+        {a: "مانكو / خوخ", k: "مانگۆ یان خوخ", p: "3.000"}
     ]},
     { id: "milkshake", ar: "ميلك شيك", ku: "میلک شێیک", items: [
-        {a: "اوريو", k: "ئۆریۆ", p: "4.500"}, {a: "لوتس", k: "لۆتس", p: "4.500"},
-        {a: "نوتيلا", k: "نۆتێلا", p: "4.500"}, {a: "بستاشيو", k: "بستاشیو", p: "5.000"},
-        {a: "كيندر", k: "کیندر", p: "5.000"}
+        {a: "اوريو / لوتس", k: "ئۆریۆ یان لۆتس", p: "4.500"}, {a: "فراولة / كرز", k: "فراولە یان گێلاس", p: "4.500"},
+        {a: "نوتيلا", k: "نۆتێلا", p: "4.500"}, {a: "بستاشيو / كيندر", k: "بستاشیو یان کیندر", p: "5.000"}
     ]},
-    { id: "pastries", ar: "المعجنات", ku: "مەعجەنات", items: [
-        {a: "توست ببروني", k: "توست بێبەرۆنی", p: "2.500"}, {a: "کرواسون نوتيلا", k: "کرواسان نۆتێلا", p: "2.500"},
-        {a: "منی بيتزا", k: "مینی بیتزا", p: "2.500"}
+    { id: "energy", ar: "طاقة", ku: "وزە", items: [
+        {a: "طاقة رمان / بلاك", k: "تاکەی ڕمان یان بلاک", p: "2.500"}, {a: "طاقة ريد بول", k: "ڕێد بوڵ", p: "3.500"},
+        {a: "طاقة تايكر", k: "تایگەر", p: "2.000"}
+    ]},
+    { id: "toast", ar: "توست ومعجنات", ku: "توست و مەعجەنات", items: [
+        {a: "توست ببروني / جبن", k: "توست بێبەرۆنی یان پەنیر", p: "2.500"}, {a: "توست نوتيلا", k: "توست نۆتێلا", p: "2.500"},
+        {a: "كرواسون نوتيلا / جبن", k: "کرواسان نۆتێلا یان پەنیر", p: "2.500"}, {a: "مني بيتزا / فطائر", k: "مینی بیتزا یان فەتایر", p: "2.500"}
     ]},
     { id: "sweets", ar: "الحلويات", ku: "شیرینی", items: [
-        {a: "كريب كلاسيك", k: "کرێپ کلاسیک", p: "5.500"}, {a: "كريب كاب", k: "کرێپ کاب", p: "5.000"},
-        {a: "بستاشيو كاب", k: "بستاشیو کاب", p: "6.000"}, {a: "ميكس كاب", k: "مێکس کاب", p: "6.000"}
+        {a: "كريب كلاسيك", k: "کرێپ کلاسیک", p: "5.500"}, {a: "كريب اوريو / لوتس", k: "کرێپ ئۆریۆ یان لۆتس", p: "6.500"},
+        {a: "بستاشيو كاب", k: "بستاشیو کاب", p: "6.000"}, {a: "تراميسو / جيس كيك", k: "تێرامیسۆ یان چیس کێک", p: "2.000 / 4.000"}
     ]}
 ];
 
@@ -208,7 +208,7 @@ function searchMenu() {
 function toggleLang() {
     currentLang = currentLang === 'ar' ? 'ku' : 'ar';
     document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'کوردی' : 'عربي';
-    document.getElementById('search').placeholder = currentLang === 'ar' ? "ابحث عن مشروبك..." : "بگەڕێ بۆ خواردنەوەکەت...";
+    document.getElementById('search').placeholder = currentLang === 'ar' ? "ابحث عن طلبك..." : "بگەڕێ بۆ داواکارییەکەت...";
     renderMenu();
 }
 
@@ -223,4 +223,3 @@ renderMenu();
 </script>
 </body>
 </html>
-
