@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #ffcc00; /* Sunflower Yellow */
-            --primary-dark: #b8860b;
-            --bg-body: #fdfdfd;
+            --primary-yellow: #ffcc00;
+            --dark-gold: #b8860b;
+            --bg-body: #f8f9fa;
             --card-bg: #ffffff;
             --text-main: #1c1e21;
             --nav-bg: rgba(255, 255, 255, 0.98);
         }
 
         [data-theme="dark"] {
-            --bg-body: #0a1118;
+            --bg-body: #0d1117;
             --card-bg: #161b22;
-            --text-main: #ffffff;
-            --nav-bg: rgba(10, 17, 24, 0.98);
+            --text-main: #f0f6fc;
+            --nav-bg: rgba(13, 17, 23, 0.98);
         }
 
         body {
@@ -31,65 +31,84 @@
             transition: 0.3s;
         }
 
+        /* --- Updated Navbar with Logo --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 2000;
-            background: var(--nav-bg); border-bottom: 3px solid var(--primary-color);
+            background: var(--nav-bg); border-bottom: 3px solid var(--primary-yellow);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .nav-top {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 8px 12px; max-width: 1200px; margin: 0 auto;
+            padding: 10px 15px; max-width: 1200px; margin: 0 auto;
         }
 
-        .logo-box { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-        .logo-circle { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-color); display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; }
-        .brand-name { font-weight: 900; color: var(--primary-dark); font-size: 1.2rem; text-transform: uppercase; }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-yellow);
+            object-fit: cover;
+            background-color: #fff;
+        }
+
+        .brand-name { 
+            font-weight: 900; 
+            color: var(--dark-gold); 
+            font-size: 1.2rem; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
         .category-nav {
-            display: flex; overflow-x: auto; gap: 8px; padding: 10px 12px;
-            background: rgba(0,0,0,0.02); scrollbar-width: none;
+            display: flex; overflow-x: auto; gap: 8px; padding: 10px;
+            background: rgba(0,0,0,0.03); scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
         }
         .category-nav::-webkit-scrollbar { display: none; }
 
         .cat-link {
             color: var(--text-main); text-decoration: none; white-space: nowrap;
-            padding: 6px 14px; border-radius: 15px; font-size: 12px; font-weight: 700;
+            padding: 7px 15px; border-radius: 20px; font-size: 12px; font-weight: 700;
             border: 1px solid rgba(0,0,0,0.1); background: var(--card-bg);
         }
 
-        .search-wrap { padding: 10px 12px; background: var(--bg-body); position: sticky; top: 95px; z-index: 1000; }
+        .search-wrap { padding: 10px 15px; background: var(--bg-body); position: sticky; top: 105px; z-index: 1000; }
         .search-box {
-            width: 100%; padding: 10px 15px; border-radius: 20px;
-            border: 2px solid var(--primary-color); background: var(--card-bg);
-            color: var(--text-main); outline: none; box-sizing: border-box;
+            width: 100%; padding: 12px; border-radius: 25px;
+            border: 2px solid var(--primary-yellow); background: var(--card-bg);
+            color: var(--text-main); outline: none; box-sizing: border-box; font-size: 14px;
         }
 
-        .menu-section { max-width: 1200px; margin: 0 auto 30px; padding: 0 10px; scroll-margin-top: 150px; }
-        .section-title { color: var(--primary-dark); font-size: 1.2rem; margin-bottom: 12px; border-right: 4px solid var(--primary-color); padding-right: 10px; }
-
-        .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        @media (min-width: 768px) { .menu-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); } }
-
-        .item-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); }
-        .item-img { width: 100%; height: 100px; object-fit: cover; background: #eee; }
-        .item-info { padding: 10px; display: flex; flex-direction: column; justify-content: space-between; min-height: 70px; }
-        .item-name { font-size: 13px; font-weight: 700; line-height: 1.2; }
-        .price { color: var(--primary-dark); font-weight: 900; font-size: 14px; margin-top: 5px; }
-
-        .btn-ui { background: var(--card-bg); border: 1.5px solid var(--primary-color); color: var(--text-main); padding: 4px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; }
+        /* --- Menu Grid --- */
+        .menu-section { max-width: 1200px; margin: 0 auto 30px; padding: 0 10px; scroll-margin-top: 160px; }
+        .section-title { color: var(--dark-gold); font-size: 1.1rem; margin-bottom: 15px; border-right: 4px solid var(--primary-yellow); padding-right: 10px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         
-        .wa-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; z-index: 3000; text-decoration: none; }
+        .item-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); }
+        .item-img { width: 100%; height: 110px; object-fit: cover; background: #eee; }
+        .item-info { padding: 12px; display: flex; flex-direction: column; justify-content: space-between; min-height: 80px; }
+        .item-name { font-size: 13px; font-weight: 700; }
+        .price { color: var(--dark-gold); font-weight: 900; font-size: 15px; margin-top: 8px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 5px; }
+
+        .btn-ui { background: var(--card-bg); border: 1.5px solid var(--primary-yellow); color: var(--text-main); padding: 5px 12px; border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: bold; }
+        .wa-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; z-index: 3000; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body data-theme="light">
 
 <header>
     <div class="nav-top">
-        <a href="#" class="logo-box">
-<img src="logo.jpg" alt="Logo" class="logo-circle">
-            <span class="brand-name">Sunflower</span>
+        <a href="#" class="logo-container">
+            <img src="logo.jpg" alt="Sunflower Logo" class="logo-circle">
+            <span class="brand-name">Sunflower cfae </span>
         </a>
         <div style="display:flex; gap:6px;">
             <button class="btn-ui" onclick="toggleLang()" id="langBtn">کوردی</button>
@@ -100,7 +119,7 @@
 </header>
 
 <div class="search-wrap">
-    <input type="text" id="search" class="search-box" placeholder="ابحث عن طلبك..." oninput="searchMenu()">
+    <input type="text" id="search" class="search-box" placeholder="ابحث..." oninput="searchMenu()">
 </div>
 
 <div id="menu-content"></div>
@@ -128,46 +147,54 @@ const menuData = [
     { id: "cold-coffee", ar: "قهوة باردة", ku: "قاوەی سارد", items: [
         {a: "لاتيه كلاسيك", k: "لاتێ کلاسیک", p: "3.000"}, {a: "سبانش لاتيه", k: "سپانیش لاتێ", p: "3.500"},
         {a: "لاتيه كراميل", k: "لاتێ کەرامێل", p: "3.500"}, {a: "لاتيه بندق", k: "لاتێ بندق", p: "3.500"},
-        {a: "لاتيه فانيلا", k: "لاتێ ڤانیلا", p: "3.500"}, {a: "ايس امريكانو", k: "ئایس ئەمریکانۆ", p: "3.000"},
-        {a: "لاتيه جوز الهند", k: "لاتێ گوێزی هندی", p: "3.500"}, {a: "لاتيه ايرش", k: "لاتێ ئایریش", p: "3.500"},
-        {a: "ايس كولد برو", k: "ئایس کۆڵد برو", p: "3.000"}, {a: "ايس مارتيني", k: "ئایس مارتینی", p: "3.000"},
+        {a: "لاتيه فانيلا", k: "لاتێ ڤانیلا", p: "3.500"}, {a: "لاتيه جوز الهند", k: "لاتێ جوز الهند", p: "3.500"},
+        {a: "لاتيه ايرش", k: "لاتێ ئایریش", p: "3.500"}, {a: "(Glasar) لاتيه", k: "لاتێ گلاسر", p: "4.000"},
+        {a: "ايس امريكانو", k: "ئایس ئەمریکانۆ", p: "3.000"}, {a: "ايس كولد برو", k: "ئایس کۆڵد برو", p: "3.000"},
+        {a: "ايس مارتيني", k: "ئایس مارتینی", p: "3.000"},
         {a: "ايس امريكانو بالبرتقال", k: "ئایس ئەمریکانۆ بە پرتەقاڵ", p: "3.500"},
         {a: "ايس امريكانو بالصودا", k: "ئایس ئەمریکانۆ بە سۆدا", p: "3.500"},
-        {a: "موكا (كراميل,دارك, وايت)", k: "مۆکا", p: "3.500"},
-        {a: "لاتيه كرز / فراولة", k: "لاتێ گێلاس یان فراولە", p: "3.500"},
-        {a: "لاتيه بستاشيو", k: "لاتێ بستاشیو", p: "4.000"}
+        {a: "موكا كراميل", k: "مۆکا کەرامێل", p: "3.500"}, {a: "موكا دارك", k: "مۆکا دارک", p: "3.500"},
+        {a: "موكا وايت", k: "مۆکا واێت", p: "3.500"}, {a: "لاتيه كرز", k: "لاتێ گێلاس", p: "3.500"},
+        {a: "لاتيه فراولة", k: "لاتێ فراولە", p: "3.500"}, {a: "لاتيه بستاشيو", k: "لاتێ بستاشیو", p: "4.000"}
     ]},
-    { id: "frappe", ar: "فرابي", ku: "فرابی", items: [
+    { id: "frappe", ar: "فرابي", ku: "فرابێ", items: [
         {a: "فرابي جوكليت", k: "فرابی جۆکلێت", p: "5.000"}, {a: "فرابي كراميل", k: "فرابی کەرامێل", p: "5.000"},
         {a: "فرابي دارك جوكليت", k: "فرابی دارک", p: "5.000"}, {a: "فرابي دارك نعناع", k: "فرابی دارک نەعناع", p: "5.000"}
     ]},
     { id: "smoothie", ar: "سمودي", ku: "سمووزی", items: [
-        {a: "فراولة", k: "فراولە", p: "3.500"}, {a: "مانكو", k: "مانگۆ", p: "3.500"},
-        {a: "راز بيري", k: "رازبێری", p: "3.500"}, {a: "بلو بيري", k: "بلۆ بێری", p: "3.500"},
-        {a: "اناناس", k: "ئەناناس", p: "3.500"}, {a: "موز فراولة", k: "مۆز فراولە", p: "3.500"},
-        {a: "خوخ", k: "خوخ", p: "3.500"}
+        {a: "سمودي فراولة", k: "سمووزی فراولە", p: "3.500"}, {a: "سمودي مانكو", k: "سمووزی مانگۆ", p: "3.500"},
+        {a: "سمودي راز بيري", k: "سمووزی رازبێری", p: "3.500"}, {a: "سمودي بلو بيري", k: "سمووزی بلۆ بێری", p: "3.500"},
+        {a: "سمودي اناناس", k: "سمووزی ئەناناس", p: "3.500"}, {a: "سمودي موز فراولة", k: "سمووزی مۆز فراولە", p: "3.500"},
+        {a: "سمودي خوخ", k: "سمووزی خوخ", p: "3.500"}
     ]},
     { id: "mojito", ar: "موهيتو", ku: "مۆهیتۆ", items: [
-        {a: "ليمون نعناع", k: "لیمۆن نەعناع", p: "3.000"}, {a: "فراولة", k: "فراولە", p: "3.000"},
-        {a: "رمان", k: "رمان", p: "3.000"}, {a: "باشن فروت", k: "باشن فروت", p: "3.000"},
-        {a: "راز بيري", k: "رازبێری", p: "3.000"}, {a: "بلو بيري", k: "بلۆ بێری", p: "3.000"},
-        {a: "مانكو / خوخ", k: "مانگۆ یان خوخ", p: "3.000"}
+        {a: "موهيتو ليمون نعناع", k: "مۆهیتۆ لیمۆن نەعناع", p: "3.000"}, {a: "موهيتو فراولة", k: "مۆهیتۆ فراولە", p: "3.000"},
+        {a: "موهيتو رمان", k: "مۆهیتۆ رمان", p: "3.000"}, {a: "موهيتو باشن فروت", k: "مۆهیتۆ باشن فروت", p: "3.000"},
+        {a: "موهيتو راز بيري", k: "مۆهیتۆ رازبێری", p: "3.000"}, {a: "موهيتو بلو بيري", k: "مۆهیتۆ بلۆ بێری", p: "3.000"},
+        {a: "موهيتو مانكو", k: "مۆهیتۆ مانگۆ", p: "3.000"}, {a: "موهيتو خوخ", k: "مۆهیتۆ خوخ", p: "3.000"}
     ]},
     { id: "milkshake", ar: "ميلك شيك", ku: "میلک شێیک", items: [
-        {a: "اوريو / لوتس", k: "ئۆریۆ یان لۆتس", p: "4.500"}, {a: "فراولة / كرز", k: "فراولە یان گێلاس", p: "4.500"},
-        {a: "نوتيلا", k: "نۆتێلا", p: "4.500"}, {a: "بستاشيو / كيندر", k: "بستاشیو یان کیندر", p: "5.000"}
+        {a: "ميلك شيك اوريو", k: "میلک شێیک ئۆریۆ", p: "4.500"}, {a: "ميلك شيك لوتس", k: "میلک شێیک لۆتس", p: "4.500"},
+        {a: "ميلك شيك نوتيلا", k: "میلک شێیک نۆتێلا", p: "4.500"}, {a: "ميلك شيك فراولة", k: "میلک شێیک فراولە", p: "4.500"},
+        {a: "ميلك شيك كرز", k: "میلک شێیک گێلاس", p: "4.500"}, {a: "ميلك شيك بستاشيو", k: "میلک شێیک بستاشیو", p: "5.000"},
+        {a: "ميلك شيك كيندر", k: "میلک شێیک کیندر", p: "5.000"}
     ]},
     { id: "energy", ar: "طاقة", ku: "وزە", items: [
-        {a: "طاقة رمان / بلاك", k: "تاکەی ڕمان یان بلاک", p: "2.500"}, {a: "طاقة ريد بول", k: "ڕێد بوڵ", p: "3.500"},
-        {a: "طاقة تايكر", k: "تایگەر", p: "2.000"}
+        {a: "طاقة رمان", k: "تاکەی ڕمان", p: "2.500"}, {a: "طاقة بلاك", k: "تاکەی بلاک", p: "2.500"},
+        {a: "طاقة ريد بول", k: "ڕێد بوڵ", p: "3.500"}, {a: "طاقة تايكر", k: "تایگەر", p: "2.000"}
     ]},
-    { id: "toast", ar: "توست ومعجنات", ku: "توست و مەعجەنات", items: [
-        {a: "توست ببروني / جبن", k: "توست بێبەرۆنی یان پەنیر", p: "2.500"}, {a: "توست نوتيلا", k: "توست نۆتێلا", p: "2.500"},
-        {a: "كرواسون نوتيلا / جبن", k: "کرواسان نۆتێلا یان پەنیر", p: "2.500"}, {a: "مني بيتزا / فطائر", k: "مینی بیتزا یان فەتایر", p: "2.500"}
+    { id: "food", ar: "المعجنات", ku: "مەعجەنات", items: [
+        {a: "توست ببروني", k: "توست بێبەرۆنی", p: "2.500"}, {a: "توست جبن", k: "توست پەنیر", p: "2.500"},
+        {a: "توست نوتيلا", k: "توست نۆتێلا", p: "2.500"}, {a: "كرواسون نوتيلا", k: "کرواسان نۆتێلا", p: "2.500"},
+        {a: "كرواسون جبن", k: "کرواسان پەنیر", p: "2.500"}, {a: "منی بيتزا", k: "مینی بیتزا", p: "2.500"},
+        {a: "فطائر", k: "فەتایر", p: "2.500"}
     ]},
     { id: "sweets", ar: "الحلويات", ku: "شیرینی", items: [
-        {a: "كريب كلاسيك", k: "کرێپ کلاسیک", p: "5.500"}, {a: "كريب اوريو / لوتس", k: "کرێپ ئۆریۆ یان لۆتس", p: "6.500"},
-        {a: "بستاشيو كاب", k: "بستاشیو کاب", p: "6.000"}, {a: "تراميسو / جيس كيك", k: "تێرامیسۆ یان چیس کێک", p: "2.000 / 4.000"}
+        {a: "كريب كلاسيك", k: "کرێپ کلاسیک", p: "5.500"}, {a: "كريب اوريو", k: "کرێپ ئۆریۆ", p: "6.500"},
+        {a: "كريب لوتس", k: "کرێپ لۆتس", p: "6.500"}, {a: "كريب فواكه", k: "کرێپ فواکە", p: "6.500"},
+        {a: "كريب كاب", k: "کرێپ کاب", p: "5.000"}, {a: "بستاشيو كاب", k: "بستاشیو کاب", p: "6.000"},
+        {a: "ميكس كاب", k: "مێکس کاب", p: "6.000"}, {a: "جيس كيك", k: "چیس کێک", p: "4.000"},
+        {a: "تراميسو", k: "تێرامیسۆ", p: "2.000"}, {a: "كوكيز", k: "کۆکیز", p: "2.000"}
     ]}
 ];
 
@@ -208,7 +235,7 @@ function searchMenu() {
 function toggleLang() {
     currentLang = currentLang === 'ar' ? 'ku' : 'ar';
     document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'کوردی' : 'عربي';
-    document.getElementById('search').placeholder = currentLang === 'ar' ? "ابحث عن طلبك..." : "بگەڕێ بۆ داواکارییەکەت...";
+    document.getElementById('search').placeholder = currentLang === 'ar' ? "ابحث عن مشروبك..." : "بگەڕێ بۆ داواکارییەکەت...";
     renderMenu();
 }
 
