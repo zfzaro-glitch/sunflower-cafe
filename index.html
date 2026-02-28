@@ -26,132 +26,109 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             margin: 0;
-            padding-top: 160px; /* Space for fixed navigation */
+            padding-top: 135px; /* Adjusted for mobile view */
             transition: 0.3s;
         }
 
-        /* --- Navigation --- */
-        nav {
+        /* --- Compact Mobile Navigation --- */
+        header {
             position: fixed; top: 0; width: 100%; z-index: 2000;
-            background: var(--nav-bg); border-bottom: 3px solid var(--primary-green);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: var(--nav-bg); border-bottom: 2px solid var(--primary-green);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .nav-top {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 15px; max-width: 1200px; margin: 0 auto;
+            padding: 8px 12px; max-width: 1200px; margin: 0 auto;
         }
 
-        .logo-box { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-        .logo-circle { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--primary-green); object-fit: cover; }
-        .brand-name { font-weight: 900; color: var(--primary-green); font-size: 1.2rem; }
+        .logo-box { display: flex; align-items: center; gap: 6px; text-decoration: none; }
+        .logo-circle { width: 35px; height: 35px; border-radius: 50%; border: 1.5px solid var(--primary-green); object-fit: cover; }
+        .brand-name { font-weight: 900; color: var(--primary-green); font-size: 1rem; }
 
+        /* Smooth Scroll Categories */
         .category-nav {
-            display: flex; justify-content: center;
-            gap: 10px; overflow-x: auto; padding: 12px 10px;
-            background: rgba(0,0,0,0.03);
-            white-space: nowrap; -webkit-overflow-scrolling: touch;
+            display: flex; overflow-x: auto; gap: 8px; padding: 8px 12px;
+            background: rgba(0,0,0,0.02); scrollbar-width: none;
+            -webkit-overflow-scrolling: touch; border-top: 1px solid rgba(0,0,0,0.05);
         }
         .category-nav::-webkit-scrollbar { display: none; }
 
         .cat-link {
-            color: var(--text-main); text-decoration: none;
-            padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;
-            border: 1px solid rgba(45, 90, 39, 0.2); background: var(--card-bg);
-            transition: 0.3s;
+            color: var(--text-main); text-decoration: none; white-space: nowrap;
+            padding: 6px 12px; border-radius: 15px; font-size: 12px; font-weight: 600;
+            border: 1px solid rgba(45, 90, 39, 0.15); background: var(--card-bg);
         }
-        .cat-link:hover { background: var(--primary-green); color: white; }
 
-        /* --- Search Area --- */
-        .search-container {
-            padding: 15px; text-align: center;
-            max-width: 600px; margin: 0 auto;
-        }
+        /* Fixed Search below Nav */
+        .search-wrap { padding: 8px 12px; background: var(--bg-body); position: sticky; top: 90px; z-index: 1000; }
         .search-box {
-            width: 100%; padding: 12px 20px; border-radius: 25px;
-            border: 2px solid var(--primary-green); background: var(--card-bg);
-            color: var(--text-main); outline: none; font-size: 15px;
+            width: 100%; padding: 10px 15px; border-radius: 20px;
+            border: 1.5px solid var(--primary-green); background: var(--card-bg);
+            color: var(--text-main); outline: none; font-size: 14px; box-sizing: border-box;
         }
 
-        /* --- Menu Grid --- */
-        .menu-section { max-width: 1200px; margin: 0 auto 40px; padding: 0 15px; scroll-margin-top: 170px; }
+        /* --- Grid for Mobile --- */
+        .menu-section { max-width: 1200px; margin: 0 auto 30px; padding: 0 10px; scroll-margin-top: 145px; }
         .section-title { 
-            color: var(--primary-green); font-size: 22px; margin-bottom: 15px; 
-            border-right: 5px solid var(--primary-green); padding-right: 12px;
+            color: var(--primary-green); font-size: 18px; margin-bottom: 12px; 
+            border-right: 4px solid var(--primary-green); padding-right: 10px;
         }
 
-        .menu-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        @media (min-width: 768px) {
-            .menu-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-        }
+        .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 
         .item-card {
-            background: var(--card-bg); border-radius: 15px; overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05); transition: 0.3s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: var(--card-bg); border-radius: 12px; overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        .item-img { width: 100%; height: 120px; object-fit: cover; background: #eee; }
-        .item-info { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
-        .item-name { font-size: 14px; font-weight: 700; min-height: 38px; }
-        .price { color: var(--primary-green); font-weight: 800; font-size: 16px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 8px; }
+        .item-img { width: 100%; height: 90px; object-fit: cover; background: #eee; }
+        .item-info { padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+        .item-name { font-size: 12.5px; font-weight: 700; min-height: 34px; line-height: 1.2; }
+        .price { color: var(--primary-green); font-weight: 800; font-size: 14px; margin-top: 4px; }
 
-        /* --- Buttons & UI --- */
-        .btn-ui { background: var(--card-bg); border: 2px solid var(--primary-green); color: var(--text-main); padding: 6px 14px; border-radius: 12px; cursor: pointer; font-weight: bold; }
+        .btn-ui { background: var(--card-bg); border: 1.5px solid var(--primary-green); color: var(--text-main); padding: 4px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: bold; }
         
         .wa-float {
-            position: fixed; bottom: 25px; right: 25px;
-            background: #25D366; color: white; width: 60px; height: 60px;
+            position: fixed; bottom: 20px; right: 20px;
+            background: #25D366; color: white; width: 50px; height: 50px;
             border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            font-size: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 3000;
+            font-size: 28px; box-shadow: 0 3px 10px rgba(0,0,0,0.2); z-index: 3000;
         }
 
-        footer { padding: 40px 20px; text-align: center; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 50px; }
-        .social-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 15px; }
-        .social-links a { color: var(--text-main); font-size: 28px; }
+        footer { padding: 20px; text-align: center; font-size: 11px; opacity: 0.6; }
     </style>
 </head>
 <body data-theme="light">
 
-<nav>
+<header>
     <div class="nav-top">
         <a href="#" class="logo-box">
             <img src="logo.jpg" alt="Logo" class="logo-circle">
-            <span class="brand-name">Sunflower CAFÉ</span>
+            <span class="brand-name">Sunflower Café</span>
         </a>
-        <div style="display:flex; gap:8px;">
+        <div style="display:flex; gap:6px;">
             <button class="btn-ui" onclick="toggleLang()" id="langBtn">کوردی</button>
             <button class="btn-ui" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button>
         </div>
     </div>
     <div class="category-nav" id="navCats"></div>
-</nav>
+</header>
 
-<div class="search-container">
-    <input type="text" id="search" class="search-box" placeholder="ابحث عن مشروبك..." oninput="searchMenu()">
+<div class="search-wrap">
+    <input type="text" id="search" class="search-box" placeholder="ابحث..." oninput="searchMenu()">
 </div>
 
 <div id="menu-content"></div>
 
 <a href="https://wa.me/964750XXXXXXX" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<footer>
-    <div class="social-links">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-tiktok"></i></a>
-    </div>
-    <p>© 2026 Sunflower Café - Kirkuk</p>
-</footer>
+<footer>© 2026 Sunflower Café | ستفلاور كافيه- Kirkuk</footer>
 
 <script>
 const menuData = [
     { id: "coffee", ar: "القهوة", ku: "قاوە", items: [
         {a: "قهوة تركية", k: "قاوەی تورکی", p: "2.000"}, {a: "قهوة قزوان", k: "قاوەی قەزوان", p: "2.000"},
-        {a: "قهوة فستق", k: "قاوەی فستق", p: "2.500"}, {a: "قهوة ", k: "قاوەی گلاسر", p: "3.000"},
+        {a: "قهوة فستق", k: "قاوەی فستق", p: "2.500"}, {a: "قهوة (Glasar)", k: "قاوەی گلاسر", p: "3.000"},
         {a: "اسبريسو سنكل", k: "ئەسپرێسۆ سینگڵ", p: "2.000"}, {a: "اسبريسو دبل", k: "ئەسپرێسۆ دەبڵ", p: "2.500"},
         {a: "امریکانو", k: "ئەمریکانۆ", p: "3.000"}, {a: "فلات وايت", k: "فلات وایت", p: "3.000"},
         {a: "كابتشينو", k: "کاپوچینۆ", p: "3.000"}
@@ -166,50 +143,31 @@ const menuData = [
         {a: "لاتيه كراميل", k: "لاتێ کەرامێل", p: "3.500"}, {a: "لاتيه بندق", k: "لاتێ بندق", p: "3.500"},
         {a: "لاتيه فانيلا", k: "لاتێ ڤانیلا", p: "3.500"}, {a: "ايس امريكانو", k: "ئایس ئەمریکانۆ", p: "3.000"},
         {a: "لاتيه جوز الهند", k: "لاتێ گوێزی هندی", p: "3.500"}, {a: "ايس كولد برو", k: "ئایس کۆڵد برو", p: "3.000"},
-        {a: "ايس مارتيني", k: "ئایس مارتینی", p: "3.000"}, {a: "لاتيه ", k: "لاتێ گلاسر", p: "4.000"},
-        {a: "موكا (كراميل,دارك,وايت)", k: "مۆکا", p: "3.500"}, {a: "لاتيه كرز", k: "لاتێ گێلاس", p: "3.500"},
-        {a: "لاتيه فراولة", k: "لاتێ فراولە", p: "3.500"}, {a: "لاتيه بستاشيو", k: "لاتێ بستاشیو", p: "4.000"}
+        {a: "لاتيه (Glasar)", k: "لاتێ گلاسر", p: "4.000"}, {a: "موكا (كراميل,دارك,وايت)", k: "مۆکا", p: "3.500"},
+        {a: "لاتيه بستاشيو", k: "لاتێ بستاشیو", p: "4.000"}
     ]},
     { id: "ice-tea", ar: "ايس تي", ku: "ئایس تی", items: [
         {a: "ايس تي ليمون", k: "ئایس تی لیمۆن", p: "3.000"}, {a: "ايس تي مانغو", k: "ئایس تی مانگۆ", p: "3.000"},
         {a: "ايس تي خوخ", k: "ئایس تی خوخ", p: "3.000"}, {a: "ايس بيري", k: "ئایس بێری", p: "3.000"}
     ]},
-    { id: "frappe", ar: "فرابي", ku: "فرابێ", items: [
-        {a: "فرابي جوكليت", k: "فرابی جۆکلێت", p: "5.000"}, {a: "فرابي كراميل", k: "فرابی کەرامێل", p: "5.000"},
-        {a: "فرابي دارك جوكليت", k: "فرابی دارک", p: "5.000"}, {a: "فرابي دارك نعناع", k: "فرابی دارک نەعناع", p: "5.000"}
-    ]},
-    { id: "smoothie", ar: "سمودي", ku: "سمووزی", items: [
-        {a: "فراولة", k: "فراولە", p: "3.500"}, {a: "مانكو", k: "مانگۆ", p: "3.500"},
-        {a: "راز بيري", k: "رازبێری", p: "3.500"}, {a: "بلو بيري", k: "بلۆ بێری", p: "3.500"},
-        {a: "اناناس", k: "ئەناناس", p: "3.500"}, {a: "موز فراولة", k: "مۆز فراولە", p: "3.500"},
-        {a: "خوخ", k: "خوخ", p: "3.500"}
-    ]},
     { id: "mojito", ar: "موهيتو", ku: "مۆهیتۆ", items: [
         {a: "ليمون نعناع", k: "لیمۆن نەعناع", p: "3.000"}, {a: "فراولة", k: "فراولە", p: "3.000"},
         {a: "رمان", k: "رمان", p: "3.000"}, {a: "باشن فروت", k: "باشن فروت", p: "3.000"},
         {a: "راز بيري", k: "رازبێری", p: "3.000"}, {a: "بلو بيري", k: "بلۆ بێری", p: "3.000"},
-        {a: "مانكو", k: "مانگۆ", p: "3.000"}, {a: "خوخ", k: "خوخ", p: "3.000"}
+        {a: "مانكو", k: "مانگۆ", p: "3.000"}
     ]},
     { id: "milkshake", ar: "ميلك شيك", ku: "میلک شێیک", items: [
         {a: "اوريو", k: "ئۆریۆ", p: "4.500"}, {a: "لوتس", k: "لۆتس", p: "4.500"},
         {a: "نوتيلا", k: "نۆتێلا", p: "4.500"}, {a: "بستاشيو", k: "بستاشیو", p: "5.000"},
         {a: "كيندر", k: "کیندر", p: "5.000"}
     ]},
-    { id: "energy", ar: "طاقة", ku: "وزە", items: [
-        {a: "طاقة رمان", k: "تاکەی رمان", p: "2.500"}, {a: "طاقة بلاك", k: "تاکەی بلاک", p: "2.500"},
-        {a: "طاقة ريد بول", k: "ڕێد بوڵ", p: "3.500"}, {a: "طاقة تايكر", k: "تایگەر", p: "2.000"}
-    ]},
     { id: "pastries", ar: "المعجنات", ku: "مەعجەنات", items: [
-        {a: "توست ببروني", k: "توست بێبەرۆنی", p: "2.500"}, {a: "توست جبن", k: "توست پەنیر", p: "2.500"},
-        {a: "توست نوتيلا", k: "توست نۆتێلا", p: "2.500"}, {a: "كرواسون نوتيلا", k: "کرواسان نۆتێلا", p: "2.500"},
-        {a: "کرواسون جبن", k: "کرواسان پەنیر", p: "2.500"}, {a: "منی بیتزا", k: "مینی بیتزا", p: "2.500"},
-        {a: "فطائر", k: "فەتایر", p: "2.500"}
+        {a: "توست ببروني", k: "توست بێبەرۆنی", p: "2.500"}, {a: "کرواسون نوتيلا", k: "کرواسان نۆتێلا", p: "2.500"},
+        {a: "منی بيتزا", k: "مینی بیتزا", p: "2.500"}
     ]},
     { id: "sweets", ar: "الحلويات", ku: "شیرینی", items: [
         {a: "كريب كلاسيك", k: "کرێپ کلاسیک", p: "5.500"}, {a: "كريب كاب", k: "کرێپ کاب", p: "5.000"},
-        {a: "بستاشيو كاب", k: "بستاشیو کاب", p: "6.000"}, {a: "ميكس كاب", k: "مێکس کاب", p: "6.000"},
-        {a: "جيس كيك", k: "چیس کێک", p: "4.000"}, {a: "تراميسو", k: "تێرامیسۆ", p: "2.000"},
-        {a: "کۆکیز", k: "کۆکیز", p: "2.000"}
+        {a: "بستاشيو كاب", k: "بستاشیو کاب", p: "6.000"}, {a: "ميكس كاب", k: "مێکس کاب", p: "6.000"}
     ]}
 ];
 
@@ -218,11 +176,7 @@ let currentLang = 'ar';
 function renderMenu(data = menuData) {
     const nav = document.getElementById('navCats');
     const content = document.getElementById('menu-content');
-    
-    nav.innerHTML = menuData.map(cat => `
-        <a href="#${cat.id}" class="cat-link">${currentLang === 'ar' ? cat.ar : cat.ku}</a>
-    `).join('');
-
+    nav.innerHTML = menuData.map(cat => `<a href="#${cat.id}" class="cat-link">${currentLang === 'ar' ? cat.ar : cat.ku}</a>`).join('');
     content.innerHTML = data.map(cat => `
         <section class="menu-section" id="${cat.id}">
             <h2 class="section-title">${currentLang === 'ar' ? cat.ar : cat.ku}</h2>
@@ -244,7 +198,6 @@ function renderMenu(data = menuData) {
 function searchMenu() {
     const term = document.getElementById('search').value.toLowerCase().trim();
     if (!term) { renderMenu(menuData); return; }
-
     const filtered = menuData.map(cat => ({
         ...cat,
         items: cat.items.filter(i => i.a.toLowerCase().includes(term) || i.k.toLowerCase().includes(term))
